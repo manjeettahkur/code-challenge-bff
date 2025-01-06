@@ -39,4 +39,22 @@ export class Catalog {
     getProduct(sku: string): Product | undefined {
         return this.products.get(sku);
     }
+
+    /**
+     * Adds a product to the catalog.
+     * @param {string} sku - The SKU of the product.
+     * @param {string} name - The name of the product.
+     * @param {number} price - The price of the product.
+     * @returns {void}
+     * @throws {Error} If a product with the same SKU already exists in the catalog.
+     */
+
+    addProduct(sku: string, name: string, price: number): Product | undefined {
+        if (this.products.has(sku)) {
+            throw new Error(`Product with SKU ${sku} already exists in catalog`);
+        }
+
+        this.products.set(sku, { sku, name, price });
+        return this.products.get(sku);
+    }
 }

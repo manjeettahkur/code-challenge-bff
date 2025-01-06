@@ -20,6 +20,11 @@ export class Cart {
      * @param sku - The SKU (Stock Keeping Unit) of the item to add.
      */
     addItem(sku: string) {
+
+        // check is sku is empty or number 
+        if (!sku || typeof sku !== 'string') {
+            throw new Error('Invalid SKU')
+        }
         if (this.items.has(sku)) {
             return this.items.set(sku, (this.items.get(sku) ?? 0) + 1)
         }
@@ -40,7 +45,7 @@ export class Cart {
     getItemCount(sku: string): number {
         return this.items.get(sku) || 0
     }
-    
+
     /**
      * Gets all items in the cart.
      * @returns A map where the keys are SKUs and the values are quantities.
@@ -56,6 +61,11 @@ export class Cart {
      */
     getTotalPrice(catalog: Catalog): number {
         let totalPrice = 0;
+
+        // check if the catalog is null or undefined
+        if (!catalog) {
+            throw new Error('Catalog is null')
+        }
         for (const [sku, count] of this.items.entries()) {
             const product = catalog.getProduct(sku)
 
