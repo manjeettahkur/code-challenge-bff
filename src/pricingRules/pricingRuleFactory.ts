@@ -1,4 +1,5 @@
 import { BulkDiscountRule } from "./bulkdiscount";
+import { BuyAndGetFree } from "./buyandgetfree";
 import { BuyXForYDeal } from "./buyxforydeal";
 import { PricingRule } from "./pricingRule";
 
@@ -30,8 +31,12 @@ export class PricingRuleFactory {
                 return new BuyXForYDeal(...args as [string, number, number, number])
             case 'BulkDiscount':
                 return new BulkDiscountRule(...args as [string, number, number, number])
+            case 'BuyAndGetfree':
+                return new BuyAndGetFree(...args as [number])
             default:
                 return undefined;
         }
     }
 }
+
+// Apple TV and IPad Free VGA Adapter 

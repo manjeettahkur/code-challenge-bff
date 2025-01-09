@@ -46,6 +46,7 @@ export class Checkout {
      */
     total(): number {
         let totalPrice = this.cart.getTotalPrice(this.catalog);
+        
 
         for (const rule of this.pricingRule) {
             totalPrice -= rule.apply(this.cart);
